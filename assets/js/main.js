@@ -1,84 +1,120 @@
 /**
  * Main JavaScript File
- * Alalama Tech Theme
+ * @package Alalama_Tech
  */
 
 (function($) {
     'use strict';
 
-    // Mobile Menu Toggle
-    $('.menu-toggle').on('click', function() {
-        $('.main-navigation').toggleClass('active');
-    });
-
-    // Smooth Scroll for Anchor Links
-    $('a[href^="#"]').on('click', function(e) {
-        var target = $(this.getAttribute('href'));
-        if (target.length) {
-            e.preventDefault();
-            $('html, body').stop().animate({
-                scrollTop: target.offset().top - 100
-            }, 1000);
-        }
-    });
-
-    // Sticky Header on Scroll
-    $(window).on('scroll', function() {
-        if ($(window).scrollTop() > 100) {
-            $('.site-header').addClass('scrolled');
-        } else {
-            $('.site-header').removeClass('scrolled');
-        }
-    });
-
-    // Back to Top Button
-    $(window).on('scroll', function() {
-        if ($(window).scrollTop() > 300) {
-            $('.back-to-top').fadeIn();
-        } else {
-            $('.back-to-top').fadeOut();
-        }
-    });
-
-    $('.back-to-top').on('click', function() {
-        $('html, body').animate({scrollTop: 0}, 800);
-        return false;
-    });
-
-    // Service Card Hover Effect
-    $('.service-card').hover(
-        function() {
-            $(this).find('.service-icon').addClass('animated bounce');
-        },
-        function() {
-            $(this).find('.service-icon').removeClass('animated bounce');
-        }
-    );
-
-    // Initialize AOS (Animate on Scroll) if available
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            once: true
+    $(document).ready(function() {
+        
+        // Mobile Menu Toggle
+        $('.navbar-toggle').on('click', function() {
+            $('.navbar-menu').toggleClass('active');
+            $(this).toggleClass('active');
         });
-    }
 
-    // Contact Form Validation
-    $('form').on('submit', function(e) {
-        var isValid = true;
-        $(this).find('input[required], textarea[required]').each(function() {
-            if ($(this).val() === '') {
-                isValid = false;
-                $(this).addClass('error');
-            } else {
-                $(this).removeClass('error');
+        // Smooth Scroll
+        $('a[href^="#"]').on('click', function(e) {
+            var target = $(this.getAttribute('href'));
+            if(target.length) {
+                e.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 80
+                }, 1000);
             }
         });
-        
-        if (!isValid) {
+
+        // Sticky Header
+        var header = $('.site-header');
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                header.addClass('sticky');
+            } else {
+                header.removeClass('sticky');
+            }
+        });
+
+        // Back to Top Button
+        var backToTop = $('<button class="back-to-top"><i class="fas fa-arrow-up"></i></button>');
+        $('body').append(backToTop);
+
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                backToTop.addClass('visible');
+            } else {
+                backToTop.removeClass('visible');
+            }
+        });
+
+        backToTop.on('click', function(e) {
             e.preventDefault();
-            alert('الرجاء ملء جميع الحقول المطلوبة');
+            $('html, body').animate({scrollTop: 0}, 800);
+        });
+
+        // Portfolio Filters
+        $('.filter-btn').on('click', function() {
+            var filterValue = $(this).attr('data-filter');
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            if(filterValue === 'all') {
+                $('.portfolio-item').fadeIn();
+            } else {
+                $('.portfolio-item').hide();
+                $('.portfolio-item[data-category="' + filterValue + '"]').fadeIn();
+            }
+        });
+
+        // Contact Form Handler
+        $('#contact-form').on('submit', function(e) {
+            e.preventDefault();
+            
+            var form = $(this);
+            var submitBtn = form.find('button[type="submit"]');
+            var formData = form.serialize();
+            
+            formData += '&action=contact_form&nonce=' + alalamaAjax.nonce;
+            $('.form-alert').remove();
+            submitBtn.prop('disabled', true).text('جاري الإرسال...');
+            
+            $.ajax({
+                url: alalamaAjax.ajaxurl,
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if(response.success) {
+                        form.before('<div class="form-alert success">' + response.data.message + '</div>');
+                        form[0].reset();
+                    } else {
+                        form.before('<div class="form-alert error">' + response.data.message + '</div>');
+                    }
+                    submitBtn.prop('disabled', false).text('إرسال الرسالة');
+                },
+                error: function() {
+                    form.before('<div class="form-alert error">حدث خطأ. الرجاء المحاولة لاحقاً.</div>');
+                    submitBtn.prop('disabled', false).text('إرسال الرسالة');
+                }
+            });
+        });
+
+        // Animation on Scroll
+        function animateOnScroll() {
+            $('.animate-on-scroll').each(function() {
+                var elementTop = $(this).offset().top;
+                var elementBottom = elementTop + $(this).outerHeight();
+                var viewportTop = $(window).scrollTop();
+                var viewportBottom = viewportTop + $(window).height();
+                
+                if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    $(this).addClass('animated');
+                }
+            });
         }
+
+        $(window).on('scroll', animateOnScroll);
+        animateOnScroll();
+
     });
 
 })(jQuery);
