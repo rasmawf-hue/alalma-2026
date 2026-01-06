@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template part for displaying search results
  * 
  * @package Alalama_Tech
  */
@@ -12,12 +12,6 @@
             <a href="<?php the_permalink(); ?>">
                 <?php the_post_thumbnail('medium_large'); ?>
             </a>
-            <?php
-            $categories = get_the_category();
-            if (!empty($categories)) :
-            ?>
-                <span class="blog-category"><?php echo esc_html($categories[0]->name); ?></span>
-            <?php endif; ?>
         </div>
     <?php endif; ?>
     
@@ -25,7 +19,6 @@
         <div class="blog-meta">
             <span><i class="far fa-calendar"></i> <?php echo get_the_date(); ?></span>
             <span><i class="far fa-user"></i> <?php the_author(); ?></span>
-            <span><i class="far fa-comments"></i> <?php comments_number('0', '1', '%'); ?></span>
         </div>
         
         <h2 class="blog-title">
