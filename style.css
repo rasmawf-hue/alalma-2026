@@ -1,0 +1,48 @@
+/*
+Theme Name: Alalama Tech 2026
+Theme URI: https://alalama.ly
+Author: Alalama Computers & Technology
+Author URI: https://alalama.ly
+Description: قالب WordPress احترافي لشركة العلامة للحاسبات والتقنية - تصميم عصري ومتجاوب مع دعم كامل للغة العربية RTL
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: alalama
+Tags: rtl-language-support, responsive-layout, custom-menu, featured-images, post-formats, translation-ready
+*/
+
+/* This file is intentionally minimal. All styles are in assets/css/ */
+
+:root {
+    --primary-color: #FF6B35;
+    --secondary-color: #004E89;
+    --accent-color: #F7931E;
+    --text-dark: #1A1A1A;
+    --text-light: #666666;
+    --bg-light: #F8F9FA;
+    --white: #FFFFFF;
+    --border-color: #E5E5E5;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --info: #17a2b8;
+}
+
+body {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    direction: rtl;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Import main stylesheets */
+@import url('assets/css/main.css');
+@import url('assets/css/rtl.css');
+@import url('assets/css/responsive.css');
+@import url('assets/css/animations.css');
