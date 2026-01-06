@@ -1,0 +1,339 @@
+/**
+ * Responsive Styles
+ * 
+ * @package Alalama_Tech
+ */
+
+/* ==========================================================================
+   Desktop Styles (1200px and up)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px;
+    }
+}
+
+/* ==========================================================================
+   Tablet Landscape (992px to 1199px)
+   ========================================================================== */
+
+@media (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    
+    .navbar-nav {
+        gap: 20px;
+    }
+}
+
+/* ==========================================================================
+   Tablet Portrait (768px to 991px)
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Header */
+    .header-top .container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .header-contact {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background-color: var(--white);
+        box-shadow: var(--shadow-md);
+        padding: 20px;
+    }
+    
+    .navbar-menu.active {
+        display: block;
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .navbar-toggle {
+        display: flex;
+    }
+    
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    /* Grid */
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Footer */
+    .footer-main .row {
+        gap: 20px;
+    }
+}
+
+/* ==========================================================================
+   Mobile Landscape (576px to 767px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .container {
+        max-width: 540px;
+    }
+    
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.3rem; }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    /* Grid */
+    .col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .col-sm-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Services Grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Blog Grid */
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Mobile Portrait (up to 575px)
+   ========================================================================== */
+
+@media (max-width: 575px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.2rem; }
+    h4 { font-size: 1.1rem; }
+    h5 { font-size: 1rem; }
+    h6 { font-size: 0.9rem; }
+    
+    .section {
+        padding: 30px 0;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    /* Header */
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .header-social a {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    /* Hero */
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 14px;
+    }
+    
+    /* Cards */
+    .card-content {
+        padding: 15px;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .service-card {
+        padding: 30px 15px;
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* Grid - All columns full width on mobile */
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+    .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Footer */
+    .footer-main {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-widget {
+        margin-bottom: 25px;
+    }
+    
+    .footer-social a {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Forms */
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+        font-size: 14px;
+    }
+    
+    /* Pagination */
+    .pagination {
+        gap: 5px;
+    }
+    
+    .pagination a,
+    .pagination span {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   Extra Small Mobile (up to 400px)
+   ========================================================================== */
+
+@media (max-width: 400px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 1.2rem; }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .navbar-brand img {
+        height: 35px;
+    }
+    
+    .header-contact {
+        font-size: 12px;
+    }
+    
+    .footer-social a {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .navbar,
+    .header-top,
+    .footer-main,
+    .sidebar,
+    .comments-area,
+    .related-posts {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+    
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+}
