@@ -58,45 +58,41 @@ get_header();
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <h2>من نحن</h2>
-                    <p>شركة العلامة للحاسبات والتقنية، رائدة في تقديم الحلول التقنية المتكاملة في ليبيا.</p>
-                    <p>نقدم خدمات متنوعة تشمل تطوير المواقع والتطبيقات، أنظمة نقاط البيع، وحلول الأمن والمراقبة.</p>
-                    <a href="<?php echo home_url('/about'); ?>" class="btn btn-primary">اعرف المزيد</a>
+                    <h2 class="section-title" style="text-align: right;">من نحن</h2>
+                    <p>شركة العلامة للحاسبات والتقنية هي شركة رائدة في مجال تقنية المعلومات في ليبيا. نقدم حلولاً تقنية متكاملة للشركات والمؤسسات.</p>
+                    <p>نتميز بفريق عمل محترف ذو خبرة واسعة في مجال التقنية، ونلتزم بتقديم أفضل الخدمات لعملائنا.</p>
+                    <a href="/about" class="btn btn-primary">اعرف المزيد</a>
                 </div>
                 <div class="col-6">
-                    <!-- يمكن إضافة صورة أو فيديو هنا -->
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about.jpg" alt="من نحن" style="border-radius: 10px;">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
+    <!-- Latest Posts -->
+    <section id="blog" class="section">
         <div class="container">
-            <h2 class="section-title">تواصل معنا</h2>
-            <div class="row">
-                <div class="col-6">
-                    <div class="contact-info">
-                        <h3>معلومات الاتصال</h3>
-                        <ul class="contact-list">
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span><?php echo get_theme_mod('alalama_phone_1', '091-1234567'); ?></span>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <span><?php echo get_theme_mod('alalama_email', 'info@alalama.ly'); ?></span>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span><?php echo get_theme_mod('alalama_address', 'طرابلس، ليبيا'); ?></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <?php echo do_shortcode('[contact-form-7 id="1" title="نموذج الاتصال"]'); ?>
-                </div>
+            <h2 class="section-title">أحدث المقالات</h2>
+            <div class="blog-grid">
+                <?php
+                $recent_posts = new WP_Query(array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 3,
+                    'orderby' => 'date',
+                ));
+                
+                if ($recent_posts->have_posts()) :
+                    while ($recent_posts->have_posts()) :
+                        $recent_posts->the_post();
+                        get_template_part('template-parts/content');
+                    endwhile;
+                    wp_reset_postdata();
+                endif;
+                ?>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>" class="btn btn-primary">جميع المقالات</a>
             </div>
         </div>
     </section>
